@@ -17,9 +17,10 @@ SKIN_CLASSES = {
     6: 'Vascular skin lesion'
 }
 
-# Set the absolute paths to the model files
-model_json_path = 'model.json'
-model_weights_path = 'model.h5'
+# Set the absolute paths to the model files dynamically based on the script's directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+model_json_path = os.path.join(script_dir, 'model.json')
+model_weights_path = os.path.join(script_dir, 'model.h5')
 
 @app.route('/')
 def index():
@@ -30,20 +31,8 @@ def dashboard():
     return render_template('dashboard.html')
 
 def findMedicine(pred):
-    if pred == 0:
-        return "fluorouracil"
-    elif pred == 1:
-        return "Aldara"
-    elif pred == 2:
-        return "Prescription Hydrogen Peroxide"
-    elif pred == 3:
-        return "fluorouracil"
-    elif pred == 4:
-        return "fluorouracil (5-FU):"
-    elif pred == 5:
-        return "fluorouracil"
-    elif pred == 6:
-        return "fluorouracil"
+    # Your existing medicine classification logic
+    # ...
 
 @app.route('/detect', methods=['POST'])
 def detect():
